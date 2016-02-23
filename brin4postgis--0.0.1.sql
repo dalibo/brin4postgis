@@ -1,416 +1,298 @@
 ----------
 -- N-D GEOMETRY Operators
 -- ---------- ---------- ---------- ---------- ---------- ---------- ----------
+--
+--
 
 CREATE OR REPLACE FUNCTION is_overleft_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &< b::geometry;
-  END;  
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &< b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overleft_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &< b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &< b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overleft_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a &< b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a &< b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overright_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overright_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &> b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &> b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overright_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a &> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a &> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_left_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry << b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry << b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_left_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry << b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry << b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_left_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a << b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a << b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_right_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry >> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry >> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_right_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry >> b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry >> b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_right_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a >> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a >> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION intersects_wrap_3d(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &&& b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &&& b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION intersects_wrap_3d(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &&& b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &&& b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION intersects_wrap_3d(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a &&& b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a &&& b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_thesame_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry ~= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry ~= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_thesame_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry ~= b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry ~= b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_thesame_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a ~= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a ~= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION contains_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry ~ b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry ~ b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION contains_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry ~ b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry ~ b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION contains_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a ~ b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a ~ b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_contained_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry @ b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry @ b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_contained_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry @ b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry @ b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_contained_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a @ b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a @ b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_below_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry <<| b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry <<| b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_below_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry <<| b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry <<| b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_below_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a <<| b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a <<| b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overbelow_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &<| b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &<| b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overbelow_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry &<| b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry &<| b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overbelow_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a &<| b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a &<| b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overabove_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry |&> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry |&> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overabove_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry |&> b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry |&> b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_overabove_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a |&> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a |&> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_above_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry |>> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry |>> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_above_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry |>> b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry |>> b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_above_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a |>> b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a |>> b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_less_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry < b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry < b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_less_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry < b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry < b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_less_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a < b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a < b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_lessorequal_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry <= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry <= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_lessorequal_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry <= b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry <= b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_lessorequal_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a <= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a <= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greater_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry > b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry > b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greater_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry > b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry > b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greater_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a > b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a > b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greaterorequal_wrap(a box3d, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry >= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry >= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greaterorequal_wrap(a box3d, b geometry)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a::geometry >= b;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a::geometry >= b;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
 CREATE OR REPLACE FUNCTION is_greaterorequal_wrap(a geometry, b box3d)
 RETURNS boolean AS
 $$
-  BEGIN
-    RETURN a >= b::geometry;
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
+    SELECT a >= b::geometry;
+$$ LANGUAGE 'sql' IMMUTABLE;
 
-CREATE OR REPLACE FUNCTION st_union_wrap(a box3d, b box3d)
-RETURNS box3d AS
-$$
-  BEGIN
-    RETURN box3d(st_union(a::geometry, b::geometry));
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
 
-CREATE OR REPLACE FUNCTION st_isempty_wrap(a box3d)
-RETURNS boolean AS
-$$
-  BEGIN
-    RETURN st_isempty(a::geometry);
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
-
-CREATE OR REPLACE FUNCTION box3d_wrap(a geometry)
-RETURNS box3d AS
-$$
-  BEGIN
-    RETURN box3d(a);
-  END;
-$$ LANGUAGE 'plpgsql' IMMUTABLE;
-
--------------------
 -- Create operators
 -------------------
 
@@ -792,31 +674,6 @@ CREATE OPERATOR >= (
 
 CREATE OPERATOR FAMILY brin_geometry_inclusion_family USING brin;
 
-CREATE OPERATOR CLASS brin_geometry_inclusion_ops_box3d
-       FOR TYPE box3d USING brin FAMILY brin_geometry_inclusion_family AS
-  OPERATOR        1        &<(box3d,box3d) ,
-  OPERATOR        2        >>(box3d,box3d) ,
-  OPERATOR        3        &&&(box3d,box3d) ,
-  OPERATOR        4        &>(box3d,box3d) ,
-  OPERATOR        5        <<(box3d,box3d) ,
-  OPERATOR        6        ~=(box3d,box3d) ,
-  OPERATOR        7        ~(box3d,box3d) ,
-  OPERATOR        8        @(box3d,box3d) ,
-  OPERATOR        9        <<|(box3d,box3d) ,
-  OPERATOR        10       &<|(box3d,box3d) ,
-  OPERATOR        11       |&>(box3d,box3d) ,
-  OPERATOR        12       |>>(box3d,box3d) ,
-  OPERATOR        20       <(box3d,box3d) ,
-  OPERATOR        21       <=(box3d,box3d) ,
-  OPERATOR        22       >(box3d,box3d) ,
-  OPERATOR        23       >=(box3d,box3d) ,
-  FUNCTION        1        brin_inclusion_opcinfo(internal) ,
-  FUNCTION        2        brin_inclusion_add_value(internal, internal, internal, internal) ,
-  FUNCTION        3        brin_inclusion_consistent(internal, internal, internal) ,
-  FUNCTION        4        brin_inclusion_union(internal, internal, internal) ,
-  FUNCTION        11       st_union_wrap(box3d, box3d) ,
-  FUNCTION        13       contains_wrap(box3d, box3d) ,
-  FUNCTION        14       st_isempty_wrap(box3d);
 
 CREATE OPERATOR CLASS brin_geometry_inclusion_ops_geom
 	FOR TYPE geometry  USING brin FAMILY brin_geometry_inclusion_family AS
@@ -840,10 +697,7 @@ CREATE OPERATOR CLASS brin_geometry_inclusion_ops_geom
   FUNCTION        2        brin_inclusion_add_value(internal, internal, internal, internal) ,
   FUNCTION        3        brin_inclusion_consistent(internal, internal, internal) ,
   FUNCTION        4        brin_inclusion_union(internal, internal, internal) ,
-  FUNCTION        11       st_union(geometry, geometry) ,
-  FUNCTION        13       st_contains(geometry, geometry) ,
-  FUNCTION        14       st_isempty(geometry),
-  FUNCTION        15       box3d_wrap(geometry),
+  FUNCTION        11       st_combinebbox(box3d, geometry),
   STORAGE box3d;
 
 ALTER OPERATOR FAMILY brin_geometry_inclusion_family USING brin ADD
@@ -881,7 +735,23 @@ ALTER OPERATOR FAMILY brin_geometry_inclusion_family USING brin ADD
   OPERATOR        20       <(box3d,geometry) ,
   OPERATOR        21       <=(box3d,geometry) ,
   OPERATOR        22       >(box3d,geometry) ,
-  OPERATOR        23       >=(box3d,geometry);
+  OPERATOR        23       >=(box3d,geometry),
 
 
+  OPERATOR        1        &<(box3d,box3d) ,
+  OPERATOR        2        >>(box3d,box3d) ,
+  OPERATOR        3        &&&(box3d,box3d) ,
+  OPERATOR        4        &>(box3d,box3d) ,
+  OPERATOR        5        <<(box3d,box3d) ,
+  OPERATOR        6        ~=(box3d,box3d) ,
+  OPERATOR        7        ~(box3d,box3d) ,
+  OPERATOR        8        @(box3d,box3d) ,
+  OPERATOR        9        <<|(box3d,box3d) ,
+  OPERATOR        10       &<|(box3d,box3d) ,
+  OPERATOR        11       |&>(box3d,box3d) ,
+  OPERATOR        12       |>>(box3d,box3d) ,
+  OPERATOR        20       <(box3d,box3d) ,
+  OPERATOR        21       <=(box3d,box3d) ,
+  OPERATOR        22       >(box3d,box3d) ,
+  OPERATOR        23       >=(box3d,box3d);
 
